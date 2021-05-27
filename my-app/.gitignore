@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# Ignore lock files as we are using proxy server for packages
+yarn.lock
+package-lock.json
