@@ -8,10 +8,19 @@ type Props = {
     categories: string[]
   }
   fetchRandomJoke: () => {}
+  handleImpersonateInput: () => {}
+  impersonateInputValue: ''
 }
 
 export const MainScreen = () => {
-  const { isLoading, randomJokeData, fetchJoke } = useContext(GlobalContext)
+  const {
+    isLoading,
+    randomJokeData,
+    fetchJoke,
+    handleSelectField,
+    handleImpersonateInput,
+    impersonateInputValue,
+  } = useContext(GlobalContext)
 
   return (
     <div>
@@ -19,6 +28,9 @@ export const MainScreen = () => {
         <MainScreenComponent
           randomJoke={randomJokeData}
           fetchRandomJoke={fetchJoke}
+          handleSelectField={handleSelectField}
+          handleImpersonateInput={handleImpersonateInput}
+          impersonateInputValue={impersonateInputValue}
         />
       )}
     </div>
