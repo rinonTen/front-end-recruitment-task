@@ -33,7 +33,7 @@ const MainScreenComponent: React.FC<Props> = ({
   return (
     <main>
       <div className='ImageConatainer'>
-        <img className='Image' src='' alt='' />
+        <img className='Image' src='./assets/ChuckNorrisPhoto.png' alt='' />
       </div>
       <article className='JokeContainer'>
         <p className='JokeText'>{randomJoke.joke}</p>
