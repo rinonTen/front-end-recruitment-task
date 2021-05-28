@@ -8,8 +8,14 @@ type Props = {
     categories: string[]
   }
   fetchRandomJoke: () => {}
+  listOfCategories: string[]
   handleImpersonateInput: () => {}
   impersonateInputValue: ''
+  downloadTxtFile: () => {}
+  changeNumberOfJokes: () => {}
+  numberOfJokes: number
+  incrementJokeNumbers: () => {}
+  decrementJokeNumbers: () => {}
 }
 
 export const MainScreen = () => {
@@ -17,9 +23,15 @@ export const MainScreen = () => {
     isLoading,
     randomJokeData,
     fetchJoke,
-    handleSelectField,
+    changeJoke,
+    listOfCategories,
     handleImpersonateInput,
     impersonateInputValue,
+    downloadTxtFile,
+    changeNumberOfJokes,
+    numberOfJokes,
+    incrementJokeNumbers,
+    decrementJokeNumbers,
   } = useContext(GlobalContext)
 
   return (
@@ -28,9 +40,15 @@ export const MainScreen = () => {
         <MainScreenComponent
           randomJoke={randomJokeData}
           fetchRandomJoke={fetchJoke}
-          handleSelectField={handleSelectField}
+          changeJoke={changeJoke}
           handleImpersonateInput={handleImpersonateInput}
           impersonateInputValue={impersonateInputValue}
+          categoriesList={listOfCategories}
+          changeNumberOfJokes={changeNumberOfJokes}
+          numberOfJokes={numberOfJokes}
+          incrementJokeNumbers={incrementJokeNumbers}
+          decrementJokeNumbers={decrementJokeNumbers}
+          downloadTxtFile={downloadTxtFile}
         />
       )}
     </div>
