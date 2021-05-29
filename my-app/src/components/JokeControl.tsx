@@ -1,4 +1,12 @@
 import React from 'react'
+import { Section } from '../styleComponents/Joke'
+import {
+  Form,
+  SelectCategories,
+  InputImpersonate,
+  DrawJokeButton,
+} from '../styleComponents/JokeControl'
+
 type Props = {
   fetchRandomJoke: () => {}
   categoriesList: string[]
@@ -15,9 +23,9 @@ const JokeControl: React.FC<Props> = ({
   impersonateInputValue,
 }) => {
   return (
-    <section>
-      <form className='Form' onSubmit={changeJoke}>
-        <select
+    <Section>
+      <Form onSubmit={changeJoke}>
+        <SelectCategories
           className='SelectCategories'
           name='categories'
           id='joke_categories'>
@@ -29,23 +37,23 @@ const JokeControl: React.FC<Props> = ({
               </option>
             )
           })}
-        </select>
-        <input
+        </SelectCategories>
+        <InputImpersonate
           name='impersonate'
           type='text'
           value={impersonateInputValue}
           onChange={handleImpersonateInput}
           placeholder='Impersonate Chuck Norris'
         />
-        <button className='DrawJokeButton' onClick={fetchRandomJoke}>
+        <DrawJokeButton onClick={fetchRandomJoke}>
           {`Draw a random ${
             impersonateInputValue === ''
               ? 'Chuck Norris'
               : impersonateInputValue
           } Joke`}
-        </button>
-      </form>
-    </section>
+        </DrawJokeButton>
+      </Form>
+    </Section>
   )
 }
 

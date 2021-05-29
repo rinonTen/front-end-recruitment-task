@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalContext'
+import { Main, ContentContainer } from '../styleComponents/Main'
 import Joke from '../components/Joke'
 import JokeControl from '../components/JokeControl'
-import { GlobalContext } from '../context/GlobalState'
 import SaveJokes from '../components/SaveJokes'
 
 export const MainScreen = () => {
@@ -22,9 +23,9 @@ export const MainScreen = () => {
   } = useContext(GlobalContext)
 
   return (
-    <div>
-      {isLoading && (
-        <main>
+    <Main>
+      {!isLoading && (
+        <ContentContainer>
           <Joke
             randomJoke={randomJokeData}
             shouldJokeImageChange={shouldJokeImageChange}
@@ -37,15 +38,14 @@ export const MainScreen = () => {
             impersonateInputValue={impersonateInputValue}
           />
           <SaveJokes
-            shouldJokeImageChange={shouldJokeImageChange}
             changeNumberOfJokes={changeNumberOfJokes}
             numberOfJokes={numberOfJokes}
             incrementJokeNumbers={incrementJokeNumbers}
             decrementJokeNumbers={decrementJokeNumbers}
             downloadTxtFile={downloadTxtFile}
           />
-        </main>
+        </ContentContainer>
       )}
-    </div>
+    </Main>
   )
 }

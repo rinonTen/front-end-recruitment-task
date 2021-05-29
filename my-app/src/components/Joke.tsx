@@ -1,4 +1,11 @@
 import React from 'react'
+import {
+  Section,
+  ImageContainer,
+  Image,
+  JokeContainer,
+  JokeText,
+} from '../styleComponents/Joke'
 type Props = {
   randomJoke: {
     id: number
@@ -14,14 +21,14 @@ const Joke: React.FC<Props> = ({ randomJoke, shouldJokeImageChange }) => {
     : 'RandomPhoto.png'
 
   return (
-    <section>
-      <div className='ImageConatainer'>
-        <img className='Image' src={`./assets/${imageFile}`} alt='' />
-      </div>
-      <article className='JokeContainer'>
-        <p className='JokeText'>{randomJoke.joke}</p>
-      </article>
-    </section>
+    <Section>
+      <ImageContainer>
+        <Image src={`./assets/${imageFile}`} alt='' />
+      </ImageContainer>
+      <JokeContainer>
+        <JokeText>{randomJoke.joke}</JokeText>
+      </JokeContainer>
+    </Section>
   )
 }
 

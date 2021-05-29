@@ -21,7 +21,7 @@ interface StateNames {
 }
 
 const initialStateValues: StateNames = {
-  isLoading: false,
+  isLoading: true,
   randomJokeData: {
     id: 2,
     joke: '',
@@ -103,7 +103,7 @@ const GlobalProvider: React.FC = ({ children }) => {
       const jokeEndpoint = `${multipleJokesEndpoint + numberOfJokes.toString()}`
       const response = await fetch(jokeEndpoint)
       const multipleJokes = await response.json()
-      setIsLoading(true)
+      setIsLoading(false)
       setMultipleJokes(multipleJokes.value)
       console.log(multipleJokes.value)
     }
@@ -112,14 +112,14 @@ const GlobalProvider: React.FC = ({ children }) => {
   const fetchJokeCategory = async () => {
     const response = await fetch(jokeCategoriesEndpoint)
     const jokeCategories = await response.json()
-    setIsLoading(true)
+    setIsLoading(false)
     setListOfCategories(jokeCategories.value)
   }
 
   const fetchRandomJoke = async () => {
     const response = await fetch(randomJokeEndpoint)
     const randomJokeData = await response.json()
-    setIsLoading(true)
+    setIsLoading(false)
     setRandomJokeData(randomJokeData.value)
   }
 
@@ -152,11 +152,6 @@ const GlobalProvider: React.FC = ({ children }) => {
     setnumberOfJokes(currentNumOfJokes)
   }
 
-  const decrementJokeNumbers = () => {
-    const currentNumOfJokes = numberOfJokes - 1
-    setnumberOfJokes(currentNumOfJokes)
-  }
-
   useEffect(() => {
     fetchMultipleJokes()
   }, [numberOfJokes])
@@ -165,6 +160,13 @@ const GlobalProvider: React.FC = ({ children }) => {
     fetchRandomJoke()
     fetchJokeCategory()
   }, [])
+
+  console.log(isLoading)
+
+  const decrementJokeNumbers = () => {
+    const currentNumOfJokes = numberOfJokes - 1
+    setnumberOfJokes(currentNumOfJokes)
+  }
 
   return (
     <GlobalContext.Provider
