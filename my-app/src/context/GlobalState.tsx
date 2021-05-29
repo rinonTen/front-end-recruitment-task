@@ -9,6 +9,7 @@ interface StateNames {
   }
   fetchJoke: () => {}
   listOfCategories: string[]
+  shouldJokeImageChange: boolean
   changeJoke: any
   impersonateInputValue: string
   handleImpersonateInput: any
@@ -28,6 +29,7 @@ const initialStateValues: StateNames = {
   },
   fetchJoke: async () => {},
   listOfCategories: [],
+  shouldJokeImageChange: false,
   changeJoke: () => {},
   impersonateInputValue: '',
   handleImpersonateInput: () => {},
@@ -60,8 +62,11 @@ const GlobalProvider: React.FC = ({ children }) => {
   )
 
   const [multipleJokes, setMultipleJokes] = useState([])
+  const [shouldJokeImageChange, setShouldJokeImageChange] = useState(
+    initialStateValues.shouldJokeImageChange
+  )
 
-  let randomJokeEndpoint: string = 'http://api.icndb.com/jokes/random'
+  let randomJokeEndpoint = ''
   let jokeCategoriesEndpoint: string = 'http://api.icndb.com/categories'
   let multipleJokesEndpoint: string = 'http://api.icndb.com/jokes/random/'
   if (categoryName !== '') {
@@ -71,6 +76,8 @@ const GlobalProvider: React.FC = ({ children }) => {
     const firstNameQuery = namesFromInput[0]
     const lastNameQuery = namesFromInput.slice(1).join(' ')
     randomJokeEndpoint = `http://api.icndb.com/jokes/random?firstName=${firstNameQuery}&lastName=${lastNameQuery}`
+  } else {
+    randomJokeEndpoint = 'http://api.icndb.com/jokes/random'
   }
 
   const downloadTxtFile = () => {
@@ -122,6 +129,7 @@ const GlobalProvider: React.FC = ({ children }) => {
       categories: { value: string }
       impersonate: { value: string }
     }
+    setShouldJokeImageChange(true)
     const chosenCategory = target.categories.value
     setCategoryName(chosenCategory)
     const impersonateInputValue = target.impersonate.value
@@ -165,6 +173,7 @@ const GlobalProvider: React.FC = ({ children }) => {
         randomJokeData,
         fetchJoke: fetchRandomJoke,
         listOfCategories,
+        shouldJokeImageChange,
         changeJoke,
         handleImpersonateInput,
         impersonateInputValue,

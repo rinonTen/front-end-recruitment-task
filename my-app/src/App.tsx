@@ -1,6 +1,6 @@
 import React from 'react'
-import { GlobalProvider } from './GlobalState'
-import { MainScreen } from './screen/MainScreen'
+import { GlobalProvider } from './context/GlobalState'
+import { MainScreen } from './page/MainScreen'
 function App() {
   return (
     <GlobalProvider>
