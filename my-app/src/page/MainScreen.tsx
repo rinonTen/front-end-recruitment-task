@@ -24,7 +24,7 @@ export const MainScreen = () => {
 
   return (
     <Main>
-      {!isLoading && (
+      {!isLoading ? (
         <ContentContainer>
           <Joke
             randomJoke={randomJokeData}
@@ -44,6 +44,10 @@ export const MainScreen = () => {
             decrementJokeNumbers={decrementJokeNumbers}
             downloadTxtFile={downloadTxtFile}
           />
+        </ContentContainer>
+      ) : (
+        <ContentContainer>
+          <p>... Loading</p>
         </ContentContainer>
       )}
     </Main>

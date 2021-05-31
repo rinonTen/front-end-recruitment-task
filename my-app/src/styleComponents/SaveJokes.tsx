@@ -25,6 +25,10 @@ export const SaveJokeContainer = styled.div`
   column-gap: 8px;
   margin-top: 52px;
 `
+
+export const CountContainer = styled.div`
+  flex-basis: 30%;
+`
 export const DecrementButton = styled.button`
   ${buttonStyles}
   left: 8px;
@@ -46,6 +50,9 @@ export const SaveJokeButtonContainer = styled.div`
   width: 285px;
   display: flex;
   flex-direction: column;
+  @media (min-width: 500px) {
+    flex-basis: 64%;
+  }
 `
 export const SaveButton = styled.button`
   font-family: Inter;

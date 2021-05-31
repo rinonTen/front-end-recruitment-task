@@ -32,10 +32,13 @@ export const InputImpersonate = styled.input`
 `
 export const DrawJokeButton = styled.button`
   ${textStyles}
-  padding: 16.8px 93.4px 15.2px 93.4px;
+  padding: 16px;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
   border: solid 2px #c4c4c4;
   border-radius: 6px;
   background-color: #34394f;
   color: #ffffff;
+  @media (min-width: 500px) {
+    padding: 16.8px 93.4px 15.2px 93.4px;
+  }
 `

@@ -2,6 +2,7 @@ import React from 'react'
 import { Section } from '../styleComponents/Joke'
 import {
   SaveJokeContainer,
+  CountContainer,
   DecrementButton,
   NumberOfJokesInput,
   IncrementButton,
@@ -29,18 +30,20 @@ const SaveJokes: React.FC<Props> = ({
   return (
     <Section>
       <SaveJokeContainer>
-        <DecrementButton type='button' onClick={decrementJokeNumbers}>
-          <img src={MinusIcon} alt='Minus icon for incrementing the number' />
-        </DecrementButton>
-        <NumberOfJokesInput
-          type='text'
-          value={numberOfJokes}
-          name='numberOfJoke'
-          onChange={changeNumberOfJokes}
-        />
-        <IncrementButton type='button' onClick={incrementJokeNumbers}>
-          <img src={PlusIcon} alt='Plus icon for incrementing the number' />
-        </IncrementButton>
+        <CountContainer>
+          <DecrementButton type='button' onClick={decrementJokeNumbers}>
+            <img src={MinusIcon} alt='Minus icon for incrementing the number' />
+          </DecrementButton>
+          <NumberOfJokesInput
+            type='text'
+            value={numberOfJokes}
+            name='numberOfJoke'
+            onChange={changeNumberOfJokes}
+          />
+          <IncrementButton type='button' onClick={incrementJokeNumbers}>
+            <img src={PlusIcon} alt='Plus icon for incrementing the number' />
+          </IncrementButton>
+        </CountContainer>
         <SaveJokeButtonContainer onClick={downloadTxtFile}>
           <SaveButton type='button'>Save</SaveButton>
         </SaveJokeButtonContainer>

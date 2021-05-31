@@ -45,7 +45,7 @@ const JokeControl: React.FC<Props> = ({
           onChange={handleImpersonateInput}
           placeholder='Impersonate Chuck Norris'
         />
-        <DrawJokeButton onClick={fetchRandomJoke}>
+        <DrawJokeButton>
           {`Draw a random ${
             impersonateInputValue === ''
               ? 'Chuck Norris'
