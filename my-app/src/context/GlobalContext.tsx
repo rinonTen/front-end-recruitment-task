@@ -1,28 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
-import { ProviderNames } from './Interfaces'
+import { JOKE_CATEGORY_ENDPOINT, RANDOM_JOKE_ENDPOINT } from '../constants'
+import { initialValues } from './InitialStatesValues'
 
-const initialValues: ProviderNames = {
-  isLoading: true,
-  randomJokeData: {
-    id: 2,
-    joke: '',
-    categories: [],
-  },
-  fetchJoke: async () => {},
-  listOfCategories: [],
-  shouldJokeImageChange: false,
-  changeJoke: () => {},
-  impersonateInputValue: '',
-  handleImpersonateInput: () => {},
-  numberOfJokes: 0,
-  changeNumberOfJokes: () => {},
-  incrementJokeNumbers: () => {},
-  decrementJokeNumbers: () => {},
-  downloadTxtFile: () => {},
-}
-
-const jokeCategoriesEndpoint: string = 'http://api.icndb.com/categories'
-let randomJokeEndpoint: string = ''
 const GlobalContext = createContext(initialValues)
 
 const GlobalProvider: React.FC = ({ children }) => {
@@ -46,10 +25,9 @@ const GlobalProvider: React.FC = ({ children }) => {
   )
   const [inputValue, setInputValue] = useState('')
 
-  // Parsing the names from the input
-  const namesFromInput = inputValue.split(' ')
-  const firstName = namesFromInput[0]
-  const lastName = namesFromInput.slice(1).join(' ')
+  // Joke endpoints
+  const jokeCategoriesEndpoint: string = JOKE_CATEGORY_ENDPOINT
+  let randomJokeEndpoint: string = ''
 
   const fetchJokeCategory = async () => {
     const response = await fetch(jokeCategoriesEndpoint)
@@ -58,9 +36,15 @@ const GlobalProvider: React.FC = ({ children }) => {
     setListOfCategories(jokeCategories.value)
   }
 
+  // Changing the joke endpoint conditionally
   const getJokeEndpoint = () => {
-    // Changing the joke endpoint conditionally
-    const jokeEndpoint = 'http://api.icndb.com/jokes/random'
+    // Parsing the names from the input
+    const namesFromInput = inputValue.split(' ')
+    const firstName = namesFromInput[0]
+    const lastName = namesFromInput.slice(1).join(' ')
+
+    // Changing the joke endpoint
+    const jokeEndpoint = RANDOM_JOKE_ENDPOINT
     if (categoryName !== '') {
       randomJokeEndpoint = `${jokeEndpoint}?limitTo=[${categoryName}]`
       setShouldJokeImageChange(true)
@@ -75,7 +59,6 @@ const GlobalProvider: React.FC = ({ children }) => {
     if (categoryName !== '' && inputValue !== '') {
       randomJokeEndpoint = `${jokeEndpoint}?limitTo=[${categoryName}]&firstName=${firstName}&lastName=${lastName}`
       setShouldJokeImageChange(true)
-      console.log('inputValue, categoryName')
     }
     return randomJokeEndpoint
   }
