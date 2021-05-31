@@ -6,19 +6,18 @@ export const Section = styled.section`
   margin-right: auto;
 `
 export const ImageContainer = styled.div`
-  max-width: 100%;
-  margin-top: 48px;
   margin-bottom: 24px;
 `
 export const Image = styled.img`
   max-width: 100%;
+  object-fit: contain;
 `
 export const JokeContainer = styled.div`
   margin-bottom: 32px;
 `
 export const JokeText = styled.p`
   font-family: Inter;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   font-stretch: normal;
   font-style: italic;
@@ -26,4 +25,9 @@ export const JokeText = styled.p`
   letter-spacing: normal;
   text-align: left;
   color: #34394f;
+
+  @media (min-width: 1114px) {
+    height: 66px;
+    font-size: 18px;
+  } ;
 `

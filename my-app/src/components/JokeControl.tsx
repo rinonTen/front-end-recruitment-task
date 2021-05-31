@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Section } from '../styleComponents/Joke'
 import {
   Form,
-  SelectCategories,
+  DropDownContainer,
+  DropDownHeader,
+  DropDownListContainer,
+  DropDownList,
+  ListItem,
+  InputContainer,
   InputImpersonate,
   DrawJokeButton,
 } from '../styleComponents/JokeControl'
 
 type Props = {
-  fetchRandomJoke: () => {}
   categoriesList: string[]
   changeJoke: () => {}
   handleImpersonateInput: () => {}
@@ -16,36 +20,58 @@ type Props = {
 }
 
 const JokeControl: React.FC<Props> = ({
-  fetchRandomJoke,
   categoriesList,
   changeJoke,
   handleImpersonateInput,
   impersonateInputValue,
 }) => {
+  const [isSelectOptionOpen, setIsSelectOptionOpen] = useState<boolean>(false)
+  const [selectedOption, setSelectedOption] = useState('')
+  const toggling = () => setIsSelectOptionOpen(!isSelectOptionOpen)
+  const onOptionClicked = (value: string) => () => {
+    setSelectedOption(value)
+    setIsSelectOptionOpen(false)
+  }
+
   return (
     <Section>
       <Form onSubmit={changeJoke}>
-        <SelectCategories
-          className='SelectCategories'
-          name='categories'
-          id='joke_categories'>
-          <option value=''>Select a category</option>
-          {categoriesList.map((category) => {
-            return (
-              <option key={category} value={category}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </option>
-            )
-          })}
-        </SelectCategories>
-        <InputImpersonate
-          name='impersonate'
-          type='text'
-          value={impersonateInputValue}
-          onChange={handleImpersonateInput}
-          placeholder='Impersonate Chuck Norris'
-        />
-        <DrawJokeButton>
+        <DropDownContainer>
+          <DropDownHeader
+            onClick={toggling}
+            className={isSelectOptionOpen ? 'dropdownOpen' : 'dropdownClosed'}>
+            {isSelectOptionOpen
+              ? 'Select a category'
+              : selectedOption || 'Select a category'}
+          </DropDownHeader>
+          {isSelectOptionOpen && (
+            <DropDownListContainer>
+              <DropDownList>
+                {categoriesList.map((category) => (
+                  <ListItem
+                    data-name='categories'
+                    onClick={onOptionClicked(category)}
+                    key={Math.random()}>
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </ListItem>
+                ))}
+              </DropDownList>
+            </DropDownListContainer>
+          )}
+        </DropDownContainer>
+
+        <InputContainer>
+          <InputImpersonate
+            name='impersonate'
+            type='text'
+            value={impersonateInputValue}
+            onChange={handleImpersonateInput}
+            // placeholder='Impersonate Chuck Norris'
+          />
+          <span>Impersonate Chuck Norris</span>
+        </InputContainer>
+        <DrawJokeButton
+          className={isSelectOptionOpen ? 'drawBtnMoved' : 'drawBtn'}>
           {`Draw a random ${
             impersonateInputValue === ''
               ? 'Chuck Norris'

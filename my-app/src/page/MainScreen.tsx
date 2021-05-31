@@ -31,7 +31,6 @@ export const MainScreen = () => {
             shouldJokeImageChange={shouldJokeImageChange}
           />
           <JokeControl
-            fetchRandomJoke={fetchJoke}
             categoriesList={listOfCategories}
             changeJoke={changeJoke}
             handleImpersonateInput={handleImpersonateInput}

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 import { JOKE_CATEGORY_ENDPOINT, RANDOM_JOKE_ENDPOINT } from '../constants'
-import { initialValues } from './InitialStatesValues'
+import { initialValues } from './InitialValues'
 
 const GlobalContext = createContext(initialValues)
 
