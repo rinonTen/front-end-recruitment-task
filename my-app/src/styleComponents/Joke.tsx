@@ -7,6 +7,8 @@ export const Section = styled.section`
 `
 export const ImageContainer = styled.div`
   margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
 `
 export const Image = styled.img`
   max-width: 100%;
