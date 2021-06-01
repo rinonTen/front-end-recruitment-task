@@ -9,7 +9,6 @@ export const MainScreen = () => {
   const {
     isLoading,
     randomJokeData,
-    fetchJoke,
     changeJoke,
     shouldJokeImageChange,
     listOfCategories,

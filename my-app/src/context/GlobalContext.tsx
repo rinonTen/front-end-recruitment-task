@@ -23,7 +23,7 @@ const GlobalProvider: React.FC = ({ children }) => {
   const [shouldJokeImageChange, setShouldJokeImageChange] = useState(
     initialValues.shouldJokeImageChange
   )
-  const [selectedCategory, setSelectedCateory] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
   const [inputValue, setInputValue] = useState('')
   // Joke endpoints
   const jokeCategoriesEndpoint: string = JOKE_CATEGORY_ENDPOINT
@@ -74,6 +74,7 @@ const GlobalProvider: React.FC = ({ children }) => {
   useEffect(() => {
     fetchRandomJoke()
     fetchJokeCategory()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName, inputValue])
 
   // Handling the select categories and impersonate jokes together
@@ -81,11 +82,14 @@ const GlobalProvider: React.FC = ({ children }) => {
     setCategoryName(selectedCategory)
     setInputValue(impersonateInputValue)
     fetchRandomJoke()
+    //Empty imput and select
+    setImpersonateInputValue('')
+    setSelectedCategory('')
   }
 
   // Get a category
   const selectCategory = (e: { target: { id: string } }) => {
-    setSelectedCateory(e.target.id)
+    setSelectedCategory(e.target.id)
   }
 
   // Allowing user to impersonate the joke through the input
@@ -125,6 +129,7 @@ const GlobalProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     fetchMultipleJokes()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numberOfJokes])
 
   // Download jokes with in txt file
