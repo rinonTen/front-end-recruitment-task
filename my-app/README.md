@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# Front end recruitment project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Feateares
+
+- This app is built with [React.js](https://reactjs.org/) and [typescript](https://www.typescriptlang.org/)
+- `Context API` is used to manage states and to get data
+- Most of the logics are kept in the context folder in globalContext file
+- `styled-components` library is used to style the app
+
+## Demo
+
+The app is live [here]()
+
+## Screenshot
+
+![Chuck Noris](./appScreenshot.png)
 
 ## Available Scripts
 
