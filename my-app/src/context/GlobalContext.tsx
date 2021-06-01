@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from 'react'
 import { JOKE_CATEGORY_ENDPOINT, RANDOM_JOKE_ENDPOINT } from '../constants'
-import { initialValues } from './InitialValues'
+import { initialValues, ProviderNames } from './InitialValues'
 
-const GlobalContext = createContext(initialValues)
+const GlobalContext = createContext<ProviderNames>(initialValues)
 
 const GlobalProvider: React.FC = ({ children }) => {
   const [isLoading, setIsLoading] = useState(initialValues.isLoading)
@@ -23,8 +23,8 @@ const GlobalProvider: React.FC = ({ children }) => {
   const [shouldJokeImageChange, setShouldJokeImageChange] = useState(
     initialValues.shouldJokeImageChange
   )
+  const [selectedCategory, setSelectedCateory] = useState('')
   const [inputValue, setInputValue] = useState('')
-
   // Joke endpoints
   const jokeCategoriesEndpoint: string = JOKE_CATEGORY_ENDPOINT
   let randomJokeEndpoint: string = ''
@@ -77,17 +77,15 @@ const GlobalProvider: React.FC = ({ children }) => {
   }, [categoryName, inputValue])
 
   // Handling the select categories and impersonate jokes together
-  const changeJoke = (e: React.SyntheticEvent) => {
-    e.preventDefault()
-    const target = e.target as typeof e.target & {
-      categories: { value: string }
-      impersonate: { value: string }
-    }
-    const chosenCategory = target.categories.value
-    setCategoryName(chosenCategory)
-    const namesFromImpersonateInput = target.impersonate.value
-    setInputValue(namesFromImpersonateInput)
+  const changeJoke = () => {
+    setCategoryName(selectedCategory)
+    setInputValue(impersonateInputValue)
     fetchRandomJoke()
+  }
+
+  // Get a category
+  const selectCategory = (e: { target: { id: string } }) => {
+    setSelectedCateory(e.target.id)
   }
 
   // Allowing user to impersonate the joke through the input
@@ -117,7 +115,7 @@ const GlobalProvider: React.FC = ({ children }) => {
   // Fetch jokes to download
   const fetchMultipleJokes = async () => {
     if (numberOfJokes > 0 || numberOfJokes <= 100) {
-      const jokeEndpoint = `${randomJokeEndpoint}/${numberOfJokes.toString()}`
+      const jokeEndpoint = `${RANDOM_JOKE_ENDPOINT}/${numberOfJokes.toString()}`
       const response = await fetch(jokeEndpoint)
       const multipleJokes = await response.json()
       setIsLoading(false)
@@ -154,6 +152,7 @@ const GlobalProvider: React.FC = ({ children }) => {
         isLoading,
         randomJokeData,
         fetchJoke: fetchRandomJoke,
+        selectCategory,
         listOfCategories,
         shouldJokeImageChange,
         changeJoke,

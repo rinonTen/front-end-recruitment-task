@@ -27,7 +27,6 @@ export const JokeText = styled.p`
   color: #34394f;
 
   @media (min-width: 1114px) {
-    height: 66px;
     font-size: 18px;
   } ;
 `

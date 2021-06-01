@@ -1,4 +1,4 @@
-interface ProviderNames {
+export interface ProviderNames {
   isLoading: boolean
   randomJokeData: {
     id: number
@@ -7,6 +7,7 @@ interface ProviderNames {
   }
   fetchJoke: () => {}
   listOfCategories: string[]
+  selectCategory: any
   shouldJokeImageChange: boolean
   changeJoke: any
   impersonateInputValue: string
@@ -18,7 +19,7 @@ interface ProviderNames {
   downloadTxtFile: any
 }
 
-export const initialValues: ProviderNames = {
+export const initialValues = {
   isLoading: true,
   randomJokeData: {
     id: 2,
@@ -26,6 +27,7 @@ export const initialValues: ProviderNames = {
     categories: [],
   },
   fetchJoke: async () => {},
+  selectCategory: () => {},
   listOfCategories: [],
   shouldJokeImageChange: false,
   changeJoke: () => {},

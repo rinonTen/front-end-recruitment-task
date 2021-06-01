@@ -8,6 +8,7 @@ import {
   IncrementButton,
   SaveJokeButtonContainer,
   SaveButton,
+  ErrorMessage,
 } from '../styleComponents/SaveJokes'
 import PlusIcon from '../assets/plus.svg'
 import MinusIcon from '../assets/minus.svg'
@@ -27,15 +28,16 @@ const SaveJokes: React.FC<Props> = ({
   decrementJokeNumbers,
   downloadTxtFile,
 }) => {
+  const showError = numberOfJokes < 0 || numberOfJokes > 100
   return (
     <Section>
       <SaveJokeContainer>
-        <CountContainer>
+        <CountContainer className={showError ? 'error' : 'countContainer'}>
           <DecrementButton type='button' onClick={decrementJokeNumbers}>
             <img src={MinusIcon} alt='Minus icon for incrementing the number' />
           </DecrementButton>
           <NumberOfJokesInput
-            type='text'
+            type='number'
             value={numberOfJokes}
             name='numberOfJoke'
             onChange={changeNumberOfJokes}
@@ -45,10 +47,16 @@ const SaveJokes: React.FC<Props> = ({
           </IncrementButton>
         </CountContainer>
         <SaveJokeButtonContainer onClick={downloadTxtFile}>
-          <SaveButton type='button'>Save</SaveButton>
+          <SaveButton
+            type='button'
+            className={
+              numberOfJokes && !showError ? 'saveBtn dark' : 'saveBtn'
+            }>
+            Save Jokes
+          </SaveButton>
         </SaveJokeButtonContainer>
-        {numberOfJokes < 0 || numberOfJokes > 100 ? (
-          <p className='ErrorMessage'>You can pick a number from 1 to 100.</p>
+        {showError ? (
+          <ErrorMessage>You can pick a number from 1 to 100.</ErrorMessage>
         ) : null}
       </SaveJokeContainer>
     </Section>

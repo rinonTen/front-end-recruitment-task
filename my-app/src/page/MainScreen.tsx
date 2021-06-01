@@ -13,6 +13,7 @@ export const MainScreen = () => {
     changeJoke,
     shouldJokeImageChange,
     listOfCategories,
+    selectCategory,
     handleImpersonateInput,
     impersonateInputValue,
     downloadTxtFile,
@@ -31,6 +32,7 @@ export const MainScreen = () => {
             shouldJokeImageChange={shouldJokeImageChange}
           />
           <JokeControl
+            selectCategory={selectCategory}
             categoriesList={listOfCategories}
             changeJoke={changeJoke}
             handleImpersonateInput={handleImpersonateInput}

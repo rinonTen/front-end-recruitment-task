@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Main = styled.main`
-  border-radius: 8px;
+  max-width: 555px;
+  border-radius: 20px;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
   margin: 16px;
@@ -9,7 +10,6 @@ export const Main = styled.main`
   padding: 32px;
 
   @media (min-width: 1114px) {
-    max-width: 555px;
     padding: 0;
     padding-top: 48px;
     padding-bottom: 72px;

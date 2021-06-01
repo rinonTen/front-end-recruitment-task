@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { Section } from '../styleComponents/Joke'
+import IconsInterfaceCaretDown from '../assets/IconsInterfaceCaretDown.svg'
+import arrowdownSign from '../assets/arrowdownSign.svg'
+
 import {
   Form,
   DropDownContainer,
@@ -7,6 +10,7 @@ import {
   DropDownListContainer,
   DropDownList,
   ListItem,
+  Category,
   InputContainer,
   InputImpersonate,
   DrawJokeButton,
@@ -15,6 +19,7 @@ import {
 type Props = {
   categoriesList: string[]
   changeJoke: () => {}
+  selectCategory: () => {}
   handleImpersonateInput: () => {}
   impersonateInputValue: string
 }
@@ -22,55 +27,82 @@ type Props = {
 const JokeControl: React.FC<Props> = ({
   categoriesList,
   changeJoke,
+  selectCategory,
   handleImpersonateInput,
   impersonateInputValue,
 }) => {
   const [isSelectOptionOpen, setIsSelectOptionOpen] = useState<boolean>(false)
-  const [selectedOption, setSelectedOption] = useState('')
+  const [selectedOption, setSelectedOption] = useState<string>('')
+  const [isSelectDefaultValue, setIsDefaultSelectValue] =
+    useState<boolean>(true)
+
   const toggling = () => setIsSelectOptionOpen(!isSelectOptionOpen)
-  const onOptionClicked = (value: string) => () => {
-    setSelectedOption(value)
+  const onOptionClicked = (category: string) => () => {
+    setSelectedOption(category)
     setIsSelectOptionOpen(false)
   }
+  // Capitalize the first letter in category name
+  const categoryNameCapitalized = (category: string) => {
+    return category.charAt(0).toUpperCase() + category.slice(1)
+  }
+
+  // This is for the options in dropdown select
+  const categoriesListElements = categoriesList.map((category) => (
+    <ListItem key={Math.random()} onClick={onOptionClicked(category)}>
+      <Category id={category} onClick={selectCategory}>
+        {categoryNameCapitalized(category)}
+      </Category>
+    </ListItem>
+  ))
 
   return (
     <Section>
-      <Form onSubmit={changeJoke}>
-        <DropDownContainer>
+      <Form>
+        <DropDownContainer
+          onClick={() => setIsDefaultSelectValue(false)}
+          className={
+            isSelectOptionOpen || selectedOption !== ''
+              ? 'selectOutlined'
+              : 'select'
+          }>
           <DropDownHeader
             onClick={toggling}
             className={isSelectOptionOpen ? 'dropdownOpen' : 'dropdownClosed'}>
-            {isSelectOptionOpen
-              ? 'Select a category'
-              : selectedOption || 'Select a category'}
+            <span>
+              {isSelectDefaultValue
+                ? 'Categories'
+                : isSelectOptionOpen
+                ? 'Select a category'
+                : categoryNameCapitalized(selectedOption) || 'Categories'}
+            </span>
+            <img
+              className={isSelectOptionOpen ? 'arrowUpIcon' : 'dropdownIcon'}
+              src={isSelectOptionOpen ? arrowdownSign : IconsInterfaceCaretDown}
+              alt='dropdown icon'
+            />
           </DropDownHeader>
           {isSelectOptionOpen && (
             <DropDownListContainer>
-              <DropDownList>
-                {categoriesList.map((category) => (
-                  <ListItem
-                    data-name='categories'
-                    onClick={onOptionClicked(category)}
-                    key={Math.random()}>
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </ListItem>
-                ))}
-              </DropDownList>
+              <DropDownList>{categoriesListElements}</DropDownList>
             </DropDownListContainer>
           )}
         </DropDownContainer>
 
         <InputContainer>
           <InputImpersonate
+            className='inputText'
+            autoComplete='off'
             name='impersonate'
             type='text'
             value={impersonateInputValue}
             onChange={handleImpersonateInput}
-            // placeholder='Impersonate Chuck Norris'
+            required
           />
-          <span>Impersonate Chuck Norris</span>
+          <span className='floating-label'> Impersonate Chuck Norris</span>
         </InputContainer>
         <DrawJokeButton
+          type='button'
+          onClick={changeJoke}
           className={isSelectOptionOpen ? 'drawBtnMoved' : 'drawBtn'}>
           {`Draw a random ${
             impersonateInputValue === ''

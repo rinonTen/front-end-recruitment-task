@@ -26,8 +26,9 @@ const Joke: React.FC<Props> = ({ randomJoke, shouldJokeImageChange }) => {
         <Image src={`./assets/${imageFile}`} alt='' />
       </ImageContainer>
       <JokeContainer>
-        <JokeText
-          dangerouslySetInnerHTML={{ __html: randomJoke.joke }}></JokeText>
+        <JokeText>
+          <q dangerouslySetInnerHTML={{ __html: randomJoke.joke }}></q>
+        </JokeText>
       </JokeContainer>
     </Section>
   )
