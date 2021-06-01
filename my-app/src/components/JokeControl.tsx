@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Section } from '../styleComponents/Joke'
 import IconsInterfaceCaretDown from '../assets/IconsInterfaceCaretDown.svg'
-import arrowdownSign from '../assets/arrowdownSign.svg'
+import arrowDownSign from '../assets/arrowdownSignDark.svg'
+import arrowDownSignGray from '../assets/arrowdownSignGray.svg'
 
 import {
   Form,
@@ -68,7 +69,7 @@ const JokeControl: React.FC<Props> = ({
           <DropDownHeader
             onClick={toggling}
             className={isSelectOptionOpen ? 'dropdownOpen' : 'dropdownClosed'}>
-            <span>
+            <span className={selectedOption === '' ? 'selectText' : 'category'}>
               {isSelectDefaultValue
                 ? 'Categories'
                 : isSelectOptionOpen
@@ -77,7 +78,13 @@ const JokeControl: React.FC<Props> = ({
             </span>
             <img
               className={isSelectOptionOpen ? 'arrowUpIcon' : 'dropdownIcon'}
-              src={isSelectOptionOpen ? arrowdownSign : IconsInterfaceCaretDown}
+              src={
+                isSelectOptionOpen
+                  ? arrowDownSignGray
+                  : selectedOption !== ''
+                  ? arrowDownSign
+                  : IconsInterfaceCaretDown
+              }
               alt='dropdown icon'
             />
           </DropDownHeader>

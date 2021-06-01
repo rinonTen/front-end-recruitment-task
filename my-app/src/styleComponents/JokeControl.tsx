@@ -69,6 +69,11 @@ export const DropDownContainer = styled.div`
     ${textStyles}
     color: #c4c4c4;
   }
+
+  .category {
+    color: #34394f;
+  }
+
   .dropdownOpen ~ div {
     border-top-right-radius: unset;
     border-top-left-radius: unset;
