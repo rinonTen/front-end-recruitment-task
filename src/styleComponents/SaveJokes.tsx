@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 const redError = '#f39a9a'
-const gray = '#f5f6f8'
+const gray1 = '#c4c4c4'
+const gray2 = '#f5f6f8'
 const dark = '#34394f'
 const white = '#ffffff'
 
@@ -46,13 +47,44 @@ export const CountContainer = styled.div`
   display: flex;
   grid-column: 1;
   border-radius: 6px;
-  background-color: ${gray};
+  background-color: ${gray2};
   padding-left: 8px;
   padding-right: 8px;
   justify-content: space-between;
 `
+
+const countButtonStyles = css`
+  width: 24px;
+  height: 24px;
+  border: 2px solid ${dark};
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+
+  span {
+    display: block;
+    color: ${dark};
+  }
+`
 export const DecrementButton = styled.button`
   ${buttonStyles}
+  ${countButtonStyles}
+  transform: translate(8px, 17px);
+
+  span {
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 14px;
+  }
+
+  &.btnChanged {
+    border-color: #c4c4c4;
+    background-color: ${gray1};
+
+    span {
+      font-weight: 600;
+    }
+  }
 `
 export const NumberOfJokesInput = styled.input`
   ${textStyles}
@@ -60,7 +92,7 @@ export const NumberOfJokesInput = styled.input`
   height: 58px;
   border: none;
   text-align: center;
-  background-color: ${gray};
+  background-color: ${gray2};
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -78,6 +110,24 @@ export const NumberOfJokesInput = styled.input`
 `
 export const IncrementButton = styled.button`
   ${buttonStyles}
+  ${countButtonStyles}
+  transform: translate(-8px, 17px);
+
+  span {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 16px;
+  }
+
+  &.btnChanged {
+    border-color: ${gray1};
+    background-color: ${gray1};
+
+    span {
+      font-weight: 600;
+      line-height: 17px;
+    }
+  }
 `
 export const SaveJokeButtonContainer = styled.div`
   display: flex;
@@ -105,7 +155,7 @@ export const SaveButton = styled.button`
   color: ${dark};
   border-color: transparent;
   border-radius: 6px;
-  background-color: ${gray};
+  background-color: ${gray2};
   text-align: center;
   padding-top: 15px;
   padding-bottom: 17px;

@@ -10,8 +10,6 @@ import {
   SaveButton,
   ErrorMessage,
 } from '../styleComponents/SaveJokes'
-import PlusIcon from '../assets/plus.svg'
-import MinusIcon from '../assets/minus.svg'
 
 type Props = {
   changeNumberOfJokes: () => {}
@@ -29,12 +27,22 @@ const SaveJokes: React.FC<Props> = ({
   downloadTxtFile,
 }) => {
   const showError = numberOfJokes < 0 || numberOfJokes > 100
+  const shouldCountButtonStylesChange =
+    numberOfJokes > 0 && numberOfJokes <= 100
+
   return (
     <Section>
       <SaveJokeContainer>
         <CountContainer className={showError ? 'error' : 'countContainer'}>
-          <DecrementButton type='button' onClick={decrementJokeNumbers}>
-            <img src={MinusIcon} alt='Minus icon for incrementing the number' />
+          <DecrementButton
+            className={
+              shouldCountButtonStylesChange
+                ? 'shouldCountButtonStylesChange btnChanged'
+                : 'countButton'
+            }
+            type='button'
+            onClick={decrementJokeNumbers}>
+            <span className='minisIcon'>-</span>
           </DecrementButton>
           <NumberOfJokesInput
             type='number'
@@ -42,8 +50,15 @@ const SaveJokes: React.FC<Props> = ({
             name='numberOfJoke'
             onChange={changeNumberOfJokes}
           />
-          <IncrementButton type='button' onClick={incrementJokeNumbers}>
-            <img src={PlusIcon} alt='Plus icon for incrementing the number' />
+          <IncrementButton
+            className={
+              shouldCountButtonStylesChange
+                ? 'shouldCountButtonStylesChange btnChanged'
+                : 'countButton'
+            }
+            type='button'
+            onClick={incrementJokeNumbers}>
+            <span className='plusIcon'>+</span>
           </IncrementButton>
         </CountContainer>
         <SaveJokeButtonContainer onClick={downloadTxtFile}>
