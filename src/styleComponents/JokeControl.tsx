@@ -154,7 +154,7 @@ export const InputImpersonate = styled.input`
 
   &:focus,
   &:not(:focus):valid {
-    padding-top: 27px;
+    padding-top: 32px;
     padding-bottom: 0;
     border: solid 2px #34394f;
   }
