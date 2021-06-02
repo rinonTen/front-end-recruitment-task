@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Section } from '../styleComponents/Joke'
 import {
   SaveJokeContainer,
@@ -26,7 +26,11 @@ const SaveJokes: React.FC<Props> = ({
   decrementJokeNumbers,
   downloadTxtFile,
 }) => {
-  const showError = numberOfJokes < 0 || numberOfJokes > 100
+  const [showError, setShowError] = useState(false)
+  useEffect(() => {
+    const shouldErrorShown = numberOfJokes < 0 || numberOfJokes > 100
+    setShowError(shouldErrorShown)
+  }, [numberOfJokes])
   const shouldCountButtonStylesChange =
     numberOfJokes > 0 && numberOfJokes <= 100
 
@@ -61,7 +65,13 @@ const SaveJokes: React.FC<Props> = ({
             <span className='plusIcon'>+</span>
           </IncrementButton>
         </CountContainer>
-        <SaveJokeButtonContainer onClick={downloadTxtFile}>
+
+        <SaveJokeButtonContainer
+          onClick={() => {
+            !showError && numberOfJokes !== 0
+              ? downloadTxtFile()
+              : setShowError(true)
+          }}>
           <SaveButton
             type='button'
             className={
@@ -70,6 +80,7 @@ const SaveJokes: React.FC<Props> = ({
             Save Jokes
           </SaveButton>
         </SaveJokeButtonContainer>
+
         {showError ? (
           <ErrorMessage>You can pick a number from 1 to 100.</ErrorMessage>
         ) : null}
