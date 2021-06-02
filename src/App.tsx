@@ -1,6 +1,6 @@
 import React from 'react'
 import { GlobalProvider } from './context/GlobalContext'
-import { MainScreen } from './page/MainScreen'
+import { MainScreen } from './screen/Main'
 import { GlobalStyle } from './styleComponents/GlobalStyles'
 
 function App() {
