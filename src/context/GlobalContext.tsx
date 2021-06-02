@@ -5,6 +5,7 @@ import { initialValues, ProviderNames } from './InitialValues'
 const GlobalContext = createContext<ProviderNames>(initialValues)
 
 const GlobalProvider: React.FC = ({ children }) => {
+  // States that stores info about the app with the initial values
   const [isLoading, setIsLoading] = useState(initialValues.isLoading)
   const [randomJokeData, setRandomJokeData] = useState(
     initialValues.randomJokeData
@@ -25,6 +26,7 @@ const GlobalProvider: React.FC = ({ children }) => {
   )
   const [selectedCategory, setSelectedCategory] = useState('')
   const [inputValue, setInputValue] = useState('')
+
   // Joke endpoints
   const jokeCategoriesEndpoint: string = JOKE_CATEGORY_ENDPOINT
   let randomJokeEndpoint: string = ''
@@ -173,4 +175,4 @@ const GlobalProvider: React.FC = ({ children }) => {
     </GlobalContext.Provider>
   )
 }
-export { GlobalContext, initialValues, GlobalProvider }
+export { GlobalContext, GlobalProvider }

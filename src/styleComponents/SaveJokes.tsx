@@ -1,9 +1,5 @@
 import styled, { css } from 'styled-components'
-const redError = '#f39a9a'
-const gray1 = '#c4c4c4'
-const gray2 = '#f5f6f8'
-const dark = '#34394f'
-const white = '#ffffff'
+import { dark, redError, gray1, gray2, white } from './colors';
 
 const buttonStyles = css`
   border-color: transparent;

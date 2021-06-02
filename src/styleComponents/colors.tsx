@@ -1,0 +1,6 @@
+export const mainBgColor: string = '#f9f9f9'
+export const redError: string = '#f39a9a'
+export const gray1: string = '#c4c4c4'
+export const gray2: string = '#f5f6f8'
+export const dark: string = '#34394f'
+export const white: string = '#ffffff'

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { dark } from './colors'
 
 export const Section = styled.section`
   max-width: 439px;
@@ -27,7 +28,7 @@ export const JokeText = styled.p`
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
-  color: #34394f;
+  color: ${dark};
 
   @media (min-width: 1114px) {
     font-size: 18px;

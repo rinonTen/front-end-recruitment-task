@@ -1,8 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
+import { mainBgColor } from './colors'
 
 export const GlobalStyle = createGlobalStyle`
  html, body {
-        background-color: #f9f9f9;
+        background-color: ${mainBgColor};
         font-family: Inter;
         font-size: 16px;
         font-weight: normal;
@@ -11,6 +12,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button {
-          cursor: pointer;
+        cursor: pointer;
   }
 `

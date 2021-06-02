@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { dark, gray1, white } from './colors'
 
 const textStyles = css`
   font-family: Inter;
@@ -11,8 +12,8 @@ const textStyles = css`
 `
 const baseInputStyles = css`
   padding: 16px;
-  background-color: #ffffff;
-  border: solid 2px #c4c4c4;
+  background-color: ${white};
+  border: solid 2px ${gray1};
   border-radius: 6px;
 `
 
@@ -53,7 +54,7 @@ export const InputContainer = styled.div`
     display: block;
     left: 16px;
     top: 16px;
-    color: #c4c4c4;
+    color: ${gray1};
   }
 `
 
@@ -67,11 +68,11 @@ export const DropDownContainer = styled.div`
 
   span {
     ${textStyles}
-    color: #c4c4c4;
+    color: ${gray1};
   }
 
   .category {
-    color: #34394f;
+    color: ${dark};
   }
 
   .dropdownOpen ~ div {
@@ -80,16 +81,16 @@ export const DropDownContainer = styled.div`
   }
 
   &.selectOutlined .dropdownOpen {
-    border: solid 2px #34394f;
+    border: solid 2px ${dark};
     border-bottom: unset;
   }
 
   &.selectOutlined .dropdownClosed {
-    border: solid 2px #34394f;
+    border: solid 2px ${dark};
   }
 
   &.selectOutlined .dropdownOpen ~ div {
-    border: solid 2px #34394f;
+    border: solid 2px ${dark};
     border-top: unset;
   }
 
@@ -111,8 +112,8 @@ export const DropDownHeader = styled.div`
 `
 
 export const DropDownListContainer = styled.div`
-  background-color: #ffffff;
-  border: solid 2px #c4c4c4;
+  background-color: ${white};
+  border: solid 2px ${gray1};
   border-radius: 6px;
   border-top: transparent;
   margin-bottom: 16px;
@@ -137,7 +138,7 @@ export const ListItem = styled.li`
   &:hover {
     font-weight: 500;
     background-color: #e9e9e9;
-    color: #34394f;
+    color: ${dark};
   }
 `
 export const Category = styled.a`
@@ -156,7 +157,7 @@ export const InputImpersonate = styled.input`
   &:not(:focus):valid {
     padding-top: 32px;
     padding-bottom: 0;
-    border: solid 2px #34394f;
+    border: solid 2px ${dark};
   }
 `
 export const DrawJokeButton = styled.button`
@@ -164,10 +165,10 @@ export const DrawJokeButton = styled.button`
   font-size: 14px;
   padding: 16px;
   font-weight: 600;
-  border: solid 1px #34394f;
+  border: solid 1px ${dark};
   border-radius: 6px;
-  background-color: #34394f;
-  color: #ffffff;
+  background-color: ${dark};
+  color: ${white};
   @media (min-width: 1114px) {
     font-size: 16px;
     padding: 16.8px 93.4px 15.2px 93.4px;
