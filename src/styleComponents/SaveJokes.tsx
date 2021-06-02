@@ -83,12 +83,17 @@ export const SaveJokeButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   grid-column: 2/3;
+  align-items: flex-end;
 
+  @media (min-width: 385px) {
+    align-items: unset;
+  }
   @media (min-width: 1114px) {
     width: 285px;
   }
 `
 export const SaveButton = styled.button`
+  max-width: 71%;
   font-family: Inter;
   font-size: 16px;
   font-weight: 500;
@@ -108,6 +113,10 @@ export const SaveButton = styled.button`
   &.saveBtn.dark {
     background-color: ${dark};
     color: ${white};
+  }
+
+  @media (min-width: 385px) {
+    max-width: unset;
   }
 `
 
