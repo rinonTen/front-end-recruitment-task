@@ -13,7 +13,7 @@ The app is live [here](https://chuck-norris-rinon.netlify.app/)
 
 ## Screenshot
 
-![Chuck Noris](./appScreenshot.png)
+![Chuck Noris](./src/assets/appScreenshot.png)
 
 ## Available Scripts
 
