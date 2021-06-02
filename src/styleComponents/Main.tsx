@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { white } from './colors'
+import { gray1, white } from './colors'
 
 export const Main = styled.main`
   max-width: 555px;
@@ -17,4 +17,21 @@ export const Main = styled.main`
     margin: 98px auto;
   }
 `
-export const ContentContainer = styled.div``
+
+export const ContentContainer = styled.div`
+  max-width: 100%;
+`
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+export const LoadingText = styled.h2`
+  font-size: 18px;
+  color: ${gray1};
+
+  @media (min-width: 1114px) {
+    font-size: 32px;
+  }
+`
