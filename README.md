@@ -9,7 +9,7 @@
 
 ## Demo
 
-The app is live [here]()
+The app is live [here](https://chuck-norris-rinon.netlify.app/)
 
 ## Screenshot
 
