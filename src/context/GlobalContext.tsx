@@ -82,6 +82,9 @@ const GlobalProvider: React.FC = ({ children }) => {
     setCategoryName(selectedCategory)
     setInputValue(impersonateInputValue)
     fetchRandomJoke()
+    //Empty imput and select
+    setImpersonateInputValue('')
+    setSelectedCategory('')
   }
 
   // Get a category
